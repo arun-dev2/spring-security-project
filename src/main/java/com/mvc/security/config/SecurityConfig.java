@@ -25,25 +25,32 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		
 		auth.inMemoryAuthentication()
-		.withUser("arun")
-		.password("$2a$10$uFPnb/VrV.Eua7vBzP8OYeeUIYeiRd6xGTOb8xh6vOhcW1nuIeDtO")
-		.roles("Administrator");
+		.withUser("Arun").password("$2a$10$uFPnb/VrV.Eua7vBzP8OYeeUIYeiRd6xGTOb8xh6vOhcW1nuIeDtO").roles("Teacher") // 1234 pswrd
+		.and()
+		.withUser("Nila").password("$2a$10$5l3S0aqVgkgY8eaEkQRcC.xAy.TWs7xwQ8Z3LcjYjH7.iNzHUkyz2").roles("Student"); //5678 pswrd
 		
-		//System.out.println("password encode value : "+bcryptPasswordEncoder.encode("1234"));
+		
 	}
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http
-			.authorizeRequests()
-				.anyRequest()
-				.authenticated()
-				//.denyAll()      // denies all request example - Site under maintenace
-				//.permitAll()    // permits all controllers without authentication
-				.and()
-			.formLogin().and()
-			.httpBasic();
+		.authorizeRequests()
+		//.anyRequest()
+		.antMatchers("/hello")
+		.authenticated()
+		.antMatchers("/bye").authenticated()   // giving permission byepass to authenticate certain handlers.
+		.antMatchers("/helloWorld").permitAll()
+		//.antMatchers("/signin").permitAll()
+				// .denyAll() // denies all request example - Site under maintenace
+				// .permitAll() // permits all controllers without authentication
+				
+		.and()
+		.formLogin().loginPage("/signin")
+		.and()
+		.httpBasic()
+		.and().logout();
 	}
 	
 }
