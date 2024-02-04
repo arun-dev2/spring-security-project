@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class FirstController {
-	
+	// internalyy viewresolver is called by spring and try to find the return jsp page
 	@GetMapping("/helloWorld")
 	public String helloWorld() {
 		return "hello-world";
