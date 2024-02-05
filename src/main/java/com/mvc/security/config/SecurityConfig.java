@@ -71,7 +71,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.formLogin().loginPage("/signin")
 		.and()
 		.httpBasic()
-		.and().logout();
+		.and().logout()
+		.and().exceptionHandling().accessDeniedPage("/accessdenied");
 	}
 	
 }

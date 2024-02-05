@@ -33,4 +33,9 @@ public class HomeController {
 	public String developerPage() {
 		return "Developer-dashboard";
 	}
+	
+	@GetMapping("/accessdenied")
+	public String errorPage() {
+		return "AccessDenied";
+	}
 }
