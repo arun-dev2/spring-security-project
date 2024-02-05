@@ -7,20 +7,15 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Sign in</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<c:if test="${param.error != null}">
-		<i style="color: red">Invalid credentials..</i>
-	</c:if>
-	<form:form align="center">
-		<h1>Sign in Page</h1>
-		<br>
-		UserName : <input type="text" name="username">
-		<br>
-		Password : <input type="password" name="password">
-		<br>
-		<input type="submit" value="Login">
-	</form:form>
+	<div align="center">
+		<h1>Sign out page
+		</h1>
+			<form:form action="logout" method="Post">
+				<input type="submit" value="Log out">
+			</form:form>
+	</div>
 </body>
 </html>

@@ -7,7 +7,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
@@ -62,11 +61,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/hello")
 		.authenticated()
 		.antMatchers("/bye").authenticated()   // giving permission byepass to authenticate certain handlers.
-		.antMatchers("/helloWorld").permitAll()
+		.antMatchers("/signout").authenticated()
 		//.antMatchers("/signin").permitAll()
 				// .denyAll() // denies all request example - Site under maintenace
 				// .permitAll() // permits all controllers without authentication
-				
+		.antMatchers("/trainer").hasAuthority("trainer") // role based authorization
+		.antMatchers("/developer").hasAuthority("developer") // role based authorization
 		.and()
 		.formLogin().loginPage("/signin")
 		.and()

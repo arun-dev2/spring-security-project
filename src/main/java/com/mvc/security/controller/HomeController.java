@@ -5,24 +5,32 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class FirstController {
+public class HomeController {
 	
-	
-	// internally viewresolver is called by spring and try to find the return jsp page
-	@GetMapping("/helloWorld")
-	public String helloWorld() {
-		return "hello-world";
+	@GetMapping("/home")
+	public String home() {
+		return "Home";
 	}
 	
 	@GetMapping("/hello")
 	@ResponseBody
 	public String hello() {
-		return "hello Arun";
+		return "hello";
 	}
 	
 	@GetMapping("/bye")
 	@ResponseBody
 	public String bye() {
-		return "bye Arun";
+		return "bye";
+	}
+	
+	@GetMapping("/trainer")
+	public String trainerPage() {
+		return "Trainer-dashboard";
+	}
+	
+	@GetMapping("/developer")
+	public String developerPage() {
+		return "Developer-dashboard";
 	}
 }
