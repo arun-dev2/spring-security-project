@@ -1,8 +1,11 @@
 package com.mvc.security.config;
 
+import javax.sql.DataSource;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -30,6 +33,20 @@ public class AppConfig {
 		
 		return new BCryptPasswordEncoder();
 		
+	}
+	
+	// establishing db connection : need Datasource
+	
+	@Bean
+	public DataSource getDataSource() {
+
+		DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
+		driverManagerDataSource.setUsername("root");
+		driverManagerDataSource.setPassword("123465789");
+		driverManagerDataSource.setUrl("jdbc:mysql://localhost:3306/userinfo");
+		driverManagerDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+
+		return driverManagerDataSource;
 	}
 	
 
